@@ -1,8 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Warna Tema Ceria --- */
+  --background: #FEFCE8; /* Super Light Yellow (Creamy) */
+  --foreground: #713F12; /* Dark Brown for text, biar kontras & nyaman dibaca */
+  
+  /* -- Warna Aksen -- */
+  --color-primary: #FDE047; /* Light Yellow / Lemon */
+  --color-primary-dark: #FACC15; /* Darker Yellow */
+  --color-accent-pink: #FBCFE8; /* Light Pink */
+  --color-accent-purple: #E9D5FF; /* Light Purple */
+  --color-success: #86EFAC; /* Light Green */
+  
+  /* -- Font -- */
+  --font-geist-sans: 'Quicksand', sans-serif;
 }
 
 @theme inline {
@@ -13,14 +25,20 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Kalo dark mode, kita sesuaain biar tetep enak dilihat */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1C1917; /* Dark Brown */
+    --foreground: #FEF3C7; /* Light Yellow */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+}
+
+/* Custom utility class untuk elemen lucu */
+.bee-shadow {
+  box-shadow: 0 4px 6px -1px rgba(251, 191, 36, 0.2), 0 2px 4px -1px rgba(251, 191, 36, 0.1);
 }
