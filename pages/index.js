@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Bee from "../components/Bee"; // Komponen Bee masih kita pake
+import NailongDecoration from "../components/NailongDecoration"; //
 
 // Data skripsi, sekarang pake emoji langsung di properti 'icon'
 const thesisStructure = [
   {
     id: "bagianAwal",
     icon: "🌻",
+    nailongImage: "/images/nailong-book.png",
     label: "Bagian Awal",
     children: [
       { id: "halamanSampul", name: "Halaman Sampul" },
@@ -24,6 +26,7 @@ const thesisStructure = [
     id: "babI",
     icon: "📖",
     label: "Bab I: Pendahuluan",
+    nailongImage: "/images/nailong-heart.png",
     children: [
       { id: "latarBelakang", name: "Latar Belakang Masalah" },
       { id: "rumusanMasalah", name: "Rumusan Masalah" },
@@ -35,6 +38,7 @@ const thesisStructure = [
     id: "babII",
     icon: "🧠",
     label: "Bab II: Landasan Teori",
+    nailongImage: "/images/nailong-muntah.png",
     children: [
       { id: "kajianPustaka", name: "Kajian Pustaka" },
       { id: "kerangkaPenelitian", name: "Kerangka Penelitian" },
@@ -45,6 +49,7 @@ const thesisStructure = [
     id: "babIII",
     icon: "🔬",
     label: "Bab III: Metode Penelitian",
+    nailongImage: "/images/nailong-sleep.png",
     children: [
       { id: "tempatWaktu", name: "Tempat dan Waktu Penelitian" },
       { id: "jenisPenelitian", name: "Jenis Penelitian" },
@@ -57,6 +62,7 @@ const thesisStructure = [
     id: "babIV",
     icon: "📊",
     label: "Bab IV: Hasil Penelitian dan Pembahasan",
+    nailongImage: "/images/nailong-gosong.png",
     children: [
       { id: "hasilPenelitian", name: "Hasil Penelitian" },
       { id: "pembahasan", name: "Pembahasan" },
@@ -66,6 +72,7 @@ const thesisStructure = [
     id: "babV",
     icon: "🏁",
     label: "Bab V: Kesimpulan dan Saran",
+    nailongImage: "/images/nailong-cape.png",
     children: [
       { id: "kesimpulan", name: "Kesimpulan" },
       { id: "implikasi", name: "Implikasi" },
@@ -76,6 +83,7 @@ const thesisStructure = [
     id: "bagianAkhir",
     icon: "🌷",
     label: "Bagian Akhir",
+    nailongImage: "/images/nailong-santuy.png",
     children: [
       { id: "daftarPustaka", name: "Daftar Pustaka" },
       { id: "lampiran", name: "Lampiran" },
@@ -97,7 +105,8 @@ const statusOptions = [
 export default function Home() {
   const [progress, setProgress] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [openAccordions, setOpenAccordions] = useState(["babI"]);
+  // const [openAccordions, setOpenAccordions] = useState(["babI"]);
+  const [openAccordions, setOpenAccordions] = useState([]);
   const [curhatDrafts, setCurhatDrafts] = useState({});
   const [isSubmitting, setIsSubmitting] = useState({});
 
@@ -203,38 +212,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 relative overflow-hidden font-sans">
-      {/* --- Dekorasi Lebah --- */}
-      {/* MOBILE: Sembunyiin di layar kecil biar nggak ganggu */}
-      <div
-        className="hidden sm:block absolute"
-        style={{ top: "10%", left: "5%" }}
-      >
-        <Bee />
-      </div>
-      <div
-        className="hidden sm:block absolute"
-        style={{ top: "60%", right: "10%" }}
-      >
-        <Bee />
-      </div>
+      {/* --- DEKORASI BACKGROUND DIHAPUS --- */}
+      {/* <NailongDecoration /> */}
+      {/* <Bee /> */}
 
       <Head>
-        <title>Semangat Skripsinya, Sayang! 🌻</title>
+        <title>Ayow Berprogres ckyipcii! 🌻</title>
         <meta
           name="description"
-          content="Website penuh warna buat nyemangatin skripsi"
+          content="Website progres ckyipci untuk jmeth gwejhh"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl relative z-10">
-        {/* Header Motivasi */}
         <header className="text-center mb-8 md:mb-12 bg-white bg-opacity-80 p-6 md:p-8 rounded-3xl shadow-lg bee-shadow">
           <h1 className="text-3xl md:text-6xl font-bold text-yellow-600 mb-4 flex items-center justify-center gap-2">
-            <span className="text-pink-500">❤️</span> semangat beypyogyes sygg! <span className="text-pink-500">❤️</span>
+            <span className="text-pink-500">❤️</span> semangat berprogres sygg!{" "}
+            <span className="text-pink-500">❤️</span>
           </h1>
           <p className="text-base md:text-lg text-amber-800">
-            sedikit dukungan buat km mihh! Kamu bica kasi ceyita
-            paling berkesan ketika berprogres juga dicini! ✨
+            sedikit dukungan buat km mihh! Kamu bica kasi ceyita paling berkesan
+            ketika berprogres juga dicini! ✨
           </p>
           <div className="mt-6 md:mt-8">
             <p className="text-xl md:text-2xl font-bold text-amber-700 flex items-center justify-center gap-2">
@@ -252,7 +250,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Tracker Progres dengan Accordion */}
         <section className="space-y-3 md:space-y-4">
           {thesisStructure.map((section) => {
             return (
@@ -264,17 +261,23 @@ export default function Home() {
                   onClick={() => toggleAccordion(section.id)}
                   className="w-full px-4 md:px-6 py-3 md:py-4 text-left flex justify-between items-center hover:bg-yellow-100 transition-colors duration-200"
                 >
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-amber-900 flex items-center gap-2">
-                    <span className="text-xl md:text-2xl">{section.icon}</span>{" "}
-                    <span className="hidden sm:inline">{section.label}</span>
-                    {/* MOBILE: Label dikecilin di HP */}
-                    <span className="sm:hidden text-base">
-                      {section.label.replace("Bab ", "").replace(": ", "")}
-                    </span>
-                  </h2>
-                  <span className="text-2xl md:text-3xl text-yellow-600">
-                    {openAccordions.includes(section.id) ? "🌼" : section.icon}
-                  </span>
+                  {/* --- PERUBAHAN UTAMA DI SINI --- */}
+                  <div className="flex items-center gap-2 md:gap-4">
+                    <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-amber-900 flex items-center gap-2">
+                      <span className="text-xl md:text-2xl">
+                        {section.icon}
+                      </span>{" "}
+                      <span className="hidden sm:inline">{section.label}</span>
+                      <span className="sm:hidden text-base">
+                        {section.label.replace("Bab ", "").replace(": ", "")}
+                      </span>
+                    </h2>
+                  </div>
+                  <img
+                    src={section.nailongImage}
+                    alt={`${section.label} avatar`}
+                    className="w-10 h-10 md:w-14 md:h-14 object-contain rounded-full"
+                  />
                 </button>
                 {openAccordions.includes(section.id) && (
                   <div className="px-4 md:px-6 pb-4 space-y-3 md:space-y-4 bg-gradient-to-b from-yellow-50 to-white">
@@ -323,7 +326,6 @@ export default function Home() {
                                   <span className="hidden sm:inline">
                                     {option.label}
                                   </span>
-                                  {/* MOBILE: Label tombol dikecilin */}
                                   <span className="sm:hidden">
                                     {option.label.split(" ")[0]}
                                   </span>
@@ -378,11 +380,9 @@ export default function Home() {
           })}
         </section>
 
-        {/* Footer Pesan Tambahan */}
         <footer className="mt-8 md:mt-12 text-center bg-white bg-opacity-80 p-4 md:p-6 rounded-2xl shadow-md">
           <p className="italic text-base md:text-lg text-amber-800">
-            "The journey of a thousand miles begins with a single step." - Lao
-            Tzu
+            "Kamu fokus sama skripsi, aku fokus jadi alasan kamu buat semangat."
           </p>
           <p className="mt-4 font-bold text-xl md:text-2xl text-yellow-600 flex items-center justify-center gap-2">
             Love, Your #1 Fan! <span className="text-pink-500">❤️</span>
